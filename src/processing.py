@@ -32,7 +32,7 @@ def process_owid_data(df: pd.DataFrame) -> pd.DataFrame:
     - Restrict to historical years
     - Select total CO2 emissions
     - Rename and enrich columns to match the canonical schema
-    - Enforce historical sanity checks
+    - Enforce historical sanity checks (no negative emissions)
 
     Parameters
     ----------
@@ -102,6 +102,7 @@ def process_iea_data(df: pd.DataFrame) -> pd.DataFrame:
 
     Steps:
     - Restrict to global (World) data
+    - Normalize scenario names to canonical labels (STEPS, NZE)
     - Restrict to CO2 emissions variables
     - Restrict to scenario time horizon
     - Rename and enrich columns to match the canonical schema
@@ -127,6 +128,32 @@ def process_iea_data(df: pd.DataFrame) -> pd.DataFrame:
     df = df[df["REGION"] == WORLD_REGION_NAME].copy()
 
     # -----------------------------
+    # Normalize scenario names
+    # -----------------------------
+    # IEA scenario labels vary across publications; we explicitly map them
+    # to canonical short names to ensure robust downstream analysis.
+    scenario_mapping = {
+        "stated policies": "STEPS",
+        "steps": "STEPS",
+        "net zero": "NZE",
+        "nze": "NZE",
+    }
+
+    def map_scenario(name: str) -> str | None:
+        if not isinstance(name, str):
+            return None
+        name_lower = name.lower()
+        for key, value in scenario_mapping.items():
+            if key in name_lower:
+                return value
+        return None
+
+    df["scenario"] = df["SCENARIO"].apply(map_scenario)
+
+    # Keep only scenarios we explicitly analyze
+    df = df[df["scenario"].notna()].copy()
+
+    # -----------------------------
     # Restrict to CO2 emissions variables
     # -----------------------------
     # We keep rows where the category explicitly refers to CO2 emissions.
@@ -145,7 +172,6 @@ def process_iea_data(df: pd.DataFrame) -> pd.DataFrame:
         columns={
             "YEAR": "year",
             "REGION": "region",
-            "SCENARIO": "scenario",
             "VALUE": "value",
             "UNIT": "unit",
         },
