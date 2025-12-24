@@ -1,114 +1,97 @@
 """
-Configuration Module
+config.py
 
-Central configuration for the climate scenario pipeline.
+Central configuration file for the climate scenario analysis pipeline.
+
+This module defines:
+- file paths
+- canonical schema conventions
+- scenario names
+- units and time boundaries
+
+The goal is to avoid hardcoding values throughout the codebase and
+ensure consistency, reproducibility, and transparency.
 """
 
-import os
 from pathlib import Path
 
-# Project root directory
-PROJECT_ROOT = Path(__file__).parent.parent
+# =========================
+# Project root and paths
+# =========================
 
-# Data directories
-DATA_DIR = PROJECT_ROOT / 'data'
-RAW_DATA_DIR = DATA_DIR / 'raw'
-INTERIM_DATA_DIR = DATA_DIR / 'interim'
-PROCESSED_DATA_DIR = DATA_DIR / 'processed'
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
-# Output directories
-OUTPUT_DIR = PROJECT_ROOT / 'outputs'
-FIGURES_DIR = OUTPUT_DIR / 'figures'
-TABLES_DIR = OUTPUT_DIR / 'tables'
+DATA_DIR = PROJECT_ROOT / "data"
+RAW_DATA_DIR = DATA_DIR / "raw"
+INTERIM_DATA_DIR = DATA_DIR / "interim"
+PROCESSED_DATA_DIR = DATA_DIR / "processed"
 
-# Ensure directories exist
-for directory in [RAW_DATA_DIR, INTERIM_DATA_DIR, PROCESSED_DATA_DIR, 
-                  FIGURES_DIR, TABLES_DIR]:
-    directory.mkdir(parents=True, exist_ok=True)
+OUTPUTS_DIR = PROJECT_ROOT / "outputs"
+FIGURES_DIR = OUTPUTS_DIR / "figures"
+TABLES_DIR = OUTPUTS_DIR / "tables"
 
-# Data sources configuration
-DATA_SOURCES = {
-    'climate_data': {
-        'url': 'https://example.com/climate_data.csv',
-        'filename': 'climate_data.csv',
-        'description': 'Historical climate data'
-    },
-    'scenario_data': {
-        'url': 'https://example.com/scenario_data.csv',
-        'filename': 'scenario_data.csv',
-        'description': 'Climate scenario projections'
-    }
-}
+# Ensure output directories exist (safe to call multiple times)
+FIGURES_DIR.mkdir(parents=True, exist_ok=True)
+TABLES_DIR.mkdir(parents=True, exist_ok=True)
 
-# Processing parameters
-PROCESSING_CONFIG = {
-    'missing_value_strategy': 'mean',
-    'outlier_threshold': 3.0,  # standard deviations
-    'temporal_resolution': 'monthly',
-    'spatial_resolution': 'regional'
-}
+# =========================
+# Raw data file names
+# =========================
 
-# Scenario parameters
-SCENARIO_CONFIG = {
-    'baseline_period': (1981, 2010),
-    'projection_period': (2020, 2100),
-    'scenarios': ['RCP2.6', 'RCP4.5', 'RCP6.0', 'RCP8.5'],
-    'variables': ['temperature', 'precipitation', 'sea_level']
-}
+OWID_CO2_FILE = RAW_DATA_DIR / "owid-co2-data.csv"
+IEA_ANNEX_FILE = RAW_DATA_DIR / "WEO2025_AnnexA_Free_Dataset_World.csv"
 
-# Visualization settings
-VIZ_CONFIG = {
-    'figure_format': 'png',
-    'dpi': 300,
-    'style': 'seaborn-v0_8-darkgrid',
-    'color_palette': 'viridis'
-}
+# =========================
+# Scope restrictions
+# =========================
 
-# Model configuration
-MODEL_CONFIG = {
-    'random_state': 42,
-    'test_size': 0.2,
-    'cv_folds': 5
-}
+# We explicitly restrict analysis to the global level
+WORLD_REGION_NAME = "World"
 
+# Time boundaries (inclusive)
+HISTORICAL_START_YEAR = 1990
+HISTORICAL_END_YEAR = 2023
+SCENARIO_END_YEAR = 2050
 
-def get_config():
-    """
-    Get the complete configuration dictionary.
-    
-    Returns:
-        dict: Configuration dictionary
-    """
-    return {
-        'paths': {
-            'project_root': PROJECT_ROOT,
-            'data': DATA_DIR,
-            'raw': RAW_DATA_DIR,
-            'interim': INTERIM_DATA_DIR,
-            'processed': PROCESSED_DATA_DIR,
-            'output': OUTPUT_DIR,
-            'figures': FIGURES_DIR,
-            'tables': TABLES_DIR
-        },
-        'data_sources': DATA_SOURCES,
-        'processing': PROCESSING_CONFIG,
-        'scenarios': SCENARIO_CONFIG,
-        'visualization': VIZ_CONFIG,
-        'model': MODEL_CONFIG
-    }
+# =========================
+# Scenario configuration
+# =========================
 
+# These are the scenarios we expect to analyze.
+# Names must match those used in the IEA dataset after cleaning.
+BASELINE_SCENARIO = "STEPS"   # Stated Policies Scenario
+NET_ZERO_SCENARIO = "NZE"     # Net Zero Emissions by 2050
 
-def print_config():
-    """Print current configuration."""
-    config = get_config()
-    print("="*60)
-    print("Climate Scenario Pipeline Configuration")
-    print("="*60)
-    for section, values in config.items():
-        print(f"\n{section.upper()}:")
-        for key, value in values.items():
-            print(f"  {key}: {value}")
+ALLOWED_SCENARIOS = [
+    BASELINE_SCENARIO,
+    NET_ZERO_SCENARIO,
+]
 
+# =========================
+# Canonical schema
+# =========================
 
-if __name__ == "__main__":
-    print_config()
+CANONICAL_COLUMNS = [
+    "year",
+    "region",
+    "sector",
+    "scenario",
+    "variable",
+    "value",
+    "unit",
+    "source",
+]
+
+# =========================
+# Units
+# =========================
+
+# We standardize all emissions to megatonnes of CO2 (MtCO2)
+EMISSIONS_UNIT = "MtCO2"
+
+# =========================
+# Variables of interest
+# =========================
+
+# Canonical variable name for economy-wide CO2 emissions
+CO2_VARIABLE_NAME = "CO2_emissions"

@@ -1,22 +1,6 @@
-# Climate Scenario Pipeline Dependencies
-
-# Core data manipulation and analysis
-pandas>=1.5.0
-numpy>=1.23.0
-
-# Machine learning and statistical analysis
-scikit-learn>=1.2.0
-
-# Visualization
-matplotlib>=3.6.0
-seaborn>=0.12.0
-
-# Data downloading
-requests>=2.28.0
-
-# Additional utilities (optional)
-jupyter>=1.0.0
-ipykernel>=6.0.0
-
-# For better table display (optional)
-tabulate>=0.9.0
+numpy==2.4.0
+pandas==2.3.3
+python-dateutil==2.9.0.post0
+pytz==2025.2
+six==1.17.0
+tzdata==2025.3
