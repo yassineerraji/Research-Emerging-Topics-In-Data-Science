@@ -32,6 +32,7 @@ def process_owid_data(df: pd.DataFrame) -> pd.DataFrame:
     - Restrict to historical years
     - Select total CO2 emissions
     - Rename and enrich columns to match the canonical schema
+    - Enforce historical sanity checks
 
     Parameters
     ----------
@@ -81,6 +82,13 @@ def process_owid_data(df: pd.DataFrame) -> pd.DataFrame:
     df = df.dropna(subset=["value"])
 
     # -----------------------------
+    # Sanity check: historical emissions must be non-negative
+    # -----------------------------
+    assert (df["value"] >= 0).all(), (
+        "Negative historical emissions detected in OWID data."
+    )
+
+    # -----------------------------
     # Enforce canonical column order
     # -----------------------------
     df = df[CANONICAL_COLUMNS]
@@ -97,6 +105,11 @@ def process_iea_data(df: pd.DataFrame) -> pd.DataFrame:
     - Restrict to CO2 emissions variables
     - Restrict to scenario time horizon
     - Rename and enrich columns to match the canonical schema
+
+    Notes
+    -----
+    Negative emissions values are explicitly allowed here, as IEA Net Zero
+    scenarios model carbon removal technologies such as BECCS and DAC.
 
     Parameters
     ----------
@@ -184,16 +197,10 @@ def build_canonical_dataset(
     combined_df = pd.concat([owid_df, iea_df], ignore_index=True)
 
     # -----------------------------
-    # Basic sanity checks
+    # Schema validation
     # -----------------------------
-    # Ensure canonical columns are present
     assert set(combined_df.columns) == set(CANONICAL_COLUMNS), (
         "Canonical dataset does not match expected schema."
-    )
-
-    # Ensure no negative emissions values
-    assert (combined_df["value"] >= 0).all(), (
-        "Negative emissions values detected."
     )
 
     return combined_df
