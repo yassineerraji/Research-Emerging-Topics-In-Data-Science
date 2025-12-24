@@ -43,6 +43,15 @@ Focus:
 
 All data used is **publicly available**.
 
+### Automated data updates (optional)
+- OWID can be refreshed via:
+
+```
+python scripts/update_owid.py
+```
+
+- IEA data is expected to be placed manually in `data/raw/` (see `scripts/check_iea_data.py`).
+
 ---
 
 ## 🔍 Scope & Assumptions
@@ -54,7 +63,10 @@ To ensure rigor and defensibility, the analysis is deliberately scoped:
 - **Time horizon**:
   - Historical: 1990–2023
   - Scenarios: up to 2050
-- **Methodology**: scenario comparison (no forecasting, no causal claims)
+- **Methodology**:
+  - Scenario comparison (no causal claims)
+  - Scenario annualization via **explicit interpolation** between historical anchor (OWID) and IEA milestone years
+  - Lightweight **transition risk proxy**: carbon price stress test (emissions × carbon price)
 
 These limitations are explicit by design and strengthen interpretability.
 
@@ -95,12 +107,20 @@ The entire pipeline is executed from a single command:
 python main.py
 ```
 
+Optional flags:
+
+```
+python main.py --main-sector "Total energy supply"
+python main.py --run-ml
+```
+
 This will:
 
 	1.	Load raw datasets
 	2.	Harmonize data into a canonical schema
-	3.	Run scenario-based emissions analysis
-	4.	Generate and save figures
+	3.	Run scenario-based emissions analysis (annualized trajectories, gaps, cumulative metrics)
+	4.	Run transition risk layer (carbon price stress test)
+	5.	Generate and save figures and tables
 
 All results are reproducible end-to-end.
 
@@ -108,9 +128,13 @@ All results are reproducible end-to-end.
 
 The pipeline produces:
 
-	•	Emissions trajectories by scenario (historical + baseline vs net zero)
+	•	Emissions trajectories by scenario (historical anchor + baseline vs net zero)
 
 	•	Absolute emissions gap vs baseline (quantifying transition ambition over time)
+
+	•	Sector-level (IEA FLOW) trajectories table + grid plot
+
+	•	Transition risk tables (carbon prices, annual carbon cost, cumulative carbon cost)
 
 Figures are saved in : 
 
@@ -119,9 +143,15 @@ outputs/figures/
 ````
 and are ready for inclusion in reports or presentations.
 
+Tables are saved in:
+
+```
+outputs/tables/
+```
+
 ## Methodological Notes
 
-•	No machine learning is used in the core pipeline.
+•	Machine learning is optional (`--run-ml`) and does not change scenario trajectories.
 
 •	All transformations and assumptions are explicit.
 
@@ -142,11 +172,11 @@ The current implementation is intentionally conservative.
 
 Potential extensions include :
 ```
-• sector-level disaggregation (if supported by data),
+• richer sector/company mapping and exposure models (transition risk),
 
 • sensitivity analysis across additional scenarios,
 
-• carbon price overlays or transition risk metrics.
+• additional risk metrics (alignment, required decarbonization rates, etc.).
 ```
 These can be added without modifying the core architecture.
 

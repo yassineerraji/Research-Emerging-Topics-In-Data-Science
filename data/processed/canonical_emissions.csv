@@ -1,0 +1,71 @@
+year,region,sector,scenario,variable,value,unit,source
+1990,World,Total energy supply,historical,CO2_emissions,22732.145,MtCO2,OWID
+1991,World,Total energy supply,historical,CO2_emissions,23205.592,MtCO2,OWID
+1992,World,Total energy supply,historical,CO2_emissions,22520.424,MtCO2,OWID
+1993,World,Total energy supply,historical,CO2_emissions,22749.873,MtCO2,OWID
+1994,World,Total energy supply,historical,CO2_emissions,22974.598,MtCO2,OWID
+1995,World,Total energy supply,historical,CO2_emissions,23516.639,MtCO2,OWID
+1996,World,Total energy supply,historical,CO2_emissions,24233.477,MtCO2,OWID
+1997,World,Total energy supply,historical,CO2_emissions,24380.322,MtCO2,OWID
+1998,World,Total energy supply,historical,CO2_emissions,24295.713,MtCO2,OWID
+1999,World,Total energy supply,historical,CO2_emissions,24837.771,MtCO2,OWID
+2000,World,Total energy supply,historical,CO2_emissions,25511.482,MtCO2,OWID
+2001,World,Total energy supply,historical,CO2_emissions,25692.994,MtCO2,OWID
+2002,World,Total energy supply,historical,CO2_emissions,26265.332,MtCO2,OWID
+2003,World,Total energy supply,historical,CO2_emissions,27652.691,MtCO2,OWID
+2004,World,Total energy supply,historical,CO2_emissions,28610.023,MtCO2,OWID
+2005,World,Total energy supply,historical,CO2_emissions,29598.951,MtCO2,OWID
+2006,World,Total energy supply,historical,CO2_emissions,30594.152,MtCO2,OWID
+2007,World,Total energy supply,historical,CO2_emissions,31499.256,MtCO2,OWID
+2008,World,Total energy supply,historical,CO2_emissions,32049.66,MtCO2,OWID
+2009,World,Total energy supply,historical,CO2_emissions,31513.014,MtCO2,OWID
+2010,World,Total energy supply,historical,CO2_emissions,33317.672,MtCO2,OWID
+2011,World,Total energy supply,historical,CO2_emissions,34479.988,MtCO2,OWID
+2012,World,Total energy supply,historical,CO2_emissions,34954.734,MtCO2,OWID
+2013,World,Total energy supply,historical,CO2_emissions,35275.82,MtCO2,OWID
+2014,World,Total energy supply,historical,CO2_emissions,35465.695,MtCO2,OWID
+2015,World,Total energy supply,historical,CO2_emissions,35403.527,MtCO2,OWID
+2016,World,Total energy supply,historical,CO2_emissions,35392.832,MtCO2,OWID
+2017,World,Total energy supply,historical,CO2_emissions,35974.609,MtCO2,OWID
+2018,World,Total energy supply,historical,CO2_emissions,36734.004,MtCO2,OWID
+2019,World,Total energy supply,historical,CO2_emissions,37086.566,MtCO2,OWID
+2020,World,Total energy supply,historical,CO2_emissions,35158.23,MtCO2,OWID
+2021,World,Total energy supply,historical,CO2_emissions,36866.863,MtCO2,OWID
+2022,World,Total energy supply,historical,CO2_emissions,37527.773,MtCO2,OWID
+2023,World,Total energy supply,historical,CO2_emissions,38094.039,MtCO2,OWID
+2035,World,Total energy supply,STEPS,CO2_emissions,35243.64,MtCO2,IEA_WEO_2025
+2040,World,Total energy supply,STEPS,CO2_emissions,32763.54,MtCO2,IEA_WEO_2025
+2050,World,Total energy supply,STEPS,CO2_emissions,29629.09,MtCO2,IEA_WEO_2025
+2035,World,Total energy supply,NZE,CO2_emissions,17605.98,MtCO2,IEA_WEO_2025
+2040,World,Total energy supply,NZE,CO2_emissions,8136.8,MtCO2,IEA_WEO_2025
+2050,World,Total energy supply,NZE,CO2_emissions,0.0,MtCO2,IEA_WEO_2025
+2035,World,Power sector inputs,STEPS,CO2_emissions,12783.02,MtCO2,IEA_WEO_2025
+2040,World,Power sector inputs,STEPS,CO2_emissions,10750.54,MtCO2,IEA_WEO_2025
+2050,World,Power sector inputs,STEPS,CO2_emissions,8448.65,MtCO2,IEA_WEO_2025
+2035,World,Power sector inputs,NZE,CO2_emissions,4172.97,MtCO2,IEA_WEO_2025
+2040,World,Power sector inputs,NZE,CO2_emissions,406.28,MtCO2,IEA_WEO_2025
+2050,World,Power sector inputs,NZE,CO2_emissions,-278.48,MtCO2,IEA_WEO_2025
+2035,World,Other energy sector,STEPS,CO2_emissions,1666.08,MtCO2,IEA_WEO_2025
+2040,World,Other energy sector,STEPS,CO2_emissions,1632.3,MtCO2,IEA_WEO_2025
+2050,World,Other energy sector,STEPS,CO2_emissions,1578.83,MtCO2,IEA_WEO_2025
+2035,World,Other energy sector,NZE,CO2_emissions,404.43,MtCO2,IEA_WEO_2025
+2040,World,Other energy sector,NZE,CO2_emissions,133.5,MtCO2,IEA_WEO_2025
+2050,World,Other energy sector,NZE,CO2_emissions,-106.63,MtCO2,IEA_WEO_2025
+2035,World,Industry,STEPS,CO2_emissions,9250.42,MtCO2,IEA_WEO_2025
+2040,World,Industry,STEPS,CO2_emissions,9241.8,MtCO2,IEA_WEO_2025
+2050,World,Industry,STEPS,CO2_emissions,8884.78,MtCO2,IEA_WEO_2025
+2035,World,Industry,NZE,CO2_emissions,6300.81,MtCO2,IEA_WEO_2025
+2040,World,Industry,NZE,CO2_emissions,3831.4,MtCO2,IEA_WEO_2025
+2050,World,Industry,NZE,CO2_emissions,452.39,MtCO2,IEA_WEO_2025
+2035,World,Transport,STEPS,CO2_emissions,8450.85,MtCO2,IEA_WEO_2025
+2040,World,Transport,STEPS,CO2_emissions,8201.3,MtCO2,IEA_WEO_2025
+2050,World,Transport,STEPS,CO2_emissions,7988.52,MtCO2,IEA_WEO_2025
+2035,World,Transport,NZE,CO2_emissions,5245.28,MtCO2,IEA_WEO_2025
+2040,World,Transport,NZE,CO2_emissions,3254.48,MtCO2,IEA_WEO_2025
+2050,World,Transport,NZE,CO2_emissions,892.73,MtCO2,IEA_WEO_2025
+2035,World,Buildings,STEPS,CO2_emissions,2492.18,MtCO2,IEA_WEO_2025
+2040,World,Buildings,STEPS,CO2_emissions,2332.14,MtCO2,IEA_WEO_2025
+2050,World,Buildings,STEPS,CO2_emissions,2167.46,MtCO2,IEA_WEO_2025
+2035,World,Buildings,NZE,CO2_emissions,1437.17,MtCO2,IEA_WEO_2025
+2040,World,Buildings,NZE,CO2_emissions,745.2,MtCO2,IEA_WEO_2025
+2050,World,Buildings,NZE,CO2_emissions,49.63,MtCO2,IEA_WEO_2025

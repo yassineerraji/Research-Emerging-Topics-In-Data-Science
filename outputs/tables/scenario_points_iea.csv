@@ -1,0 +1,37 @@
+year,scenario,sector,value
+2035,NZE,Buildings,1437.17
+2040,NZE,Buildings,745.2
+2050,NZE,Buildings,49.63
+2035,STEPS,Buildings,2492.18
+2040,STEPS,Buildings,2332.14
+2050,STEPS,Buildings,2167.46
+2035,NZE,Industry,6300.81
+2040,NZE,Industry,3831.4
+2050,NZE,Industry,452.39
+2035,STEPS,Industry,9250.42
+2040,STEPS,Industry,9241.8
+2050,STEPS,Industry,8884.78
+2035,NZE,Other energy sector,404.43
+2040,NZE,Other energy sector,133.5
+2050,NZE,Other energy sector,-106.63
+2035,STEPS,Other energy sector,1666.08
+2040,STEPS,Other energy sector,1632.3
+2050,STEPS,Other energy sector,1578.83
+2035,NZE,Power sector inputs,4172.97
+2040,NZE,Power sector inputs,406.28
+2050,NZE,Power sector inputs,-278.48
+2035,STEPS,Power sector inputs,12783.02
+2040,STEPS,Power sector inputs,10750.54
+2050,STEPS,Power sector inputs,8448.65
+2035,NZE,Total energy supply,17605.98
+2040,NZE,Total energy supply,8136.8
+2050,NZE,Total energy supply,0.0
+2035,STEPS,Total energy supply,35243.64
+2040,STEPS,Total energy supply,32763.54
+2050,STEPS,Total energy supply,29629.09
+2035,NZE,Transport,5245.28
+2040,NZE,Transport,3254.48
+2050,NZE,Transport,892.73
+2035,STEPS,Transport,8450.85
+2040,STEPS,Transport,8201.3
+2050,STEPS,Transport,7988.52

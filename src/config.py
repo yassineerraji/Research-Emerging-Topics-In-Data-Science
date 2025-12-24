@@ -68,6 +68,43 @@ ALLOWED_SCENARIOS = [
 ]
 
 # =========================
+# IEA series selection (critical to avoid double counting)
+# =========================
+IEA_CO2_CATEGORY = "CO2 total"
+IEA_CO2_PRODUCT = "Total"
+IEA_CO2_UNIT_RAW = "Mt CO2"  # as present in WEO Annex A
+
+# We restrict sector analysis to top-level flows to avoid nested double counting.
+# (The dataset also contains e.g. Road, Road freight, etc.)
+IEA_ALLOWED_FLOWS = [
+    "Total energy supply",   # global total series anchor
+    "Power sector inputs",
+    "Other energy sector",
+    "Industry",
+    "Transport",
+    "Buildings",
+]
+
+# =========================
+# Annualization / interpolation
+# =========================
+ANNUALIZE_START_YEAR = 2020
+ANNUALIZE_END_YEAR = SCENARIO_END_YEAR
+ANNUALIZATION_METHOD = "linear"  # pandas interpolate(method=...)
+
+# =========================
+# Transition risk (carbon price stress test) defaults
+# =========================
+CARBON_PRICE_START_YEAR = 2025
+CARBON_PRICE_END_YEAR = SCENARIO_END_YEAR
+
+# USD per tCO2 defaults (simple stylized paths; override via CLI)
+CARBON_PRICE_START_USD_STEPS = 25.0
+CARBON_PRICE_END_USD_STEPS = 100.0
+CARBON_PRICE_START_USD_NZE = 50.0
+CARBON_PRICE_END_USD_NZE = 200.0
+
+# =========================
 # Canonical schema
 # =========================
 

@@ -1,0 +1,13 @@
+{
+  "timestamp_utc": "2025-12-24T14:51:11.334795+00:00",
+  "main_sector": "Total energy supply",
+  "run_ml": false,
+  "raw_files": {
+    "owid": "/Users/yassine/Desktop/Research & Emerging Topics in Data Science/Final_Project/data/raw/owid-co2-data.csv",
+    "iea": "/Users/yassine/Desktop/Research & Emerging Topics in Data Science/Final_Project/data/raw/WEO2025_AnnexA_Free_Dataset_World.csv"
+  },
+  "outputs": {
+    "tables_dir": "/Users/yassine/Desktop/Research & Emerging Topics in Data Science/Final_Project/outputs/tables",
+    "processed_dir": "/Users/yassine/Desktop/Research & Emerging Topics in Data Science/Final_Project/data/processed"
+  }
+}

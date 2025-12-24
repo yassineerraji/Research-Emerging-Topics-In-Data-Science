@@ -1,0 +1,71 @@
+year,scenario,sector,value
+2035,NZE,Buildings,1437.17
+2040,NZE,Buildings,745.2
+2050,NZE,Buildings,49.63
+2035,STEPS,Buildings,2492.18
+2040,STEPS,Buildings,2332.14
+2050,STEPS,Buildings,2167.46
+2035,NZE,Industry,6300.81
+2040,NZE,Industry,3831.4
+2050,NZE,Industry,452.39
+2035,STEPS,Industry,9250.42
+2040,STEPS,Industry,9241.8
+2050,STEPS,Industry,8884.78
+2035,NZE,Other energy sector,404.43
+2040,NZE,Other energy sector,133.5
+2050,NZE,Other energy sector,-106.63
+2035,STEPS,Other energy sector,1666.08
+2040,STEPS,Other energy sector,1632.3
+2050,STEPS,Other energy sector,1578.83
+2035,NZE,Power sector inputs,4172.97
+2040,NZE,Power sector inputs,406.28
+2050,NZE,Power sector inputs,-278.48
+2035,STEPS,Power sector inputs,12783.02
+2040,STEPS,Power sector inputs,10750.54
+2050,STEPS,Power sector inputs,8448.65
+2035,NZE,Total energy supply,17605.98
+2040,NZE,Total energy supply,8136.8
+2050,NZE,Total energy supply,0.0
+2035,STEPS,Total energy supply,35243.64
+2040,STEPS,Total energy supply,32763.54
+2050,STEPS,Total energy supply,29629.09
+1990,historical,Total energy supply,22732.145
+1991,historical,Total energy supply,23205.592
+1992,historical,Total energy supply,22520.424
+1993,historical,Total energy supply,22749.873
+1994,historical,Total energy supply,22974.598
+1995,historical,Total energy supply,23516.639
+1996,historical,Total energy supply,24233.477
+1997,historical,Total energy supply,24380.322
+1998,historical,Total energy supply,24295.713
+1999,historical,Total energy supply,24837.771
+2000,historical,Total energy supply,25511.482
+2001,historical,Total energy supply,25692.994
+2002,historical,Total energy supply,26265.332
+2003,historical,Total energy supply,27652.691
+2004,historical,Total energy supply,28610.023
+2005,historical,Total energy supply,29598.951
+2006,historical,Total energy supply,30594.152
+2007,historical,Total energy supply,31499.256
+2008,historical,Total energy supply,32049.66
+2009,historical,Total energy supply,31513.014
+2010,historical,Total energy supply,33317.672
+2011,historical,Total energy supply,34479.988
+2012,historical,Total energy supply,34954.734
+2013,historical,Total energy supply,35275.82
+2014,historical,Total energy supply,35465.695
+2015,historical,Total energy supply,35403.527
+2016,historical,Total energy supply,35392.832
+2017,historical,Total energy supply,35974.609
+2018,historical,Total energy supply,36734.004
+2019,historical,Total energy supply,37086.566
+2020,historical,Total energy supply,35158.23
+2021,historical,Total energy supply,36866.863
+2022,historical,Total energy supply,37527.773
+2023,historical,Total energy supply,38094.039
+2035,NZE,Transport,5245.28
+2040,NZE,Transport,3254.48
+2050,NZE,Transport,892.73
+2035,STEPS,Transport,8450.85
+2040,STEPS,Transport,8201.3
+2050,STEPS,Transport,7988.52

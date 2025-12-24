@@ -1,1 +1,97 @@
-% This file will contain the tex code to the final report.
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{float}
+
+\title{Reproducible Climate Scenario \& Transition Risk Pipeline\\(World CO\textsubscript{2}, IEA WEO 2025)}
+\author{Final Project --- Research \& Emerging Topics in Data Science}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This project delivers an automated, reproducible analytics pipeline that compares global CO\textsubscript{2} emissions under IEA transition scenarios and produces interpretable outputs for decision support. The pipeline harmonizes public historical emissions (Our World in Data) with scenario projections (IEA World Energy Outlook 2025 Annex A), annualizes milestone scenario values with explicit assumptions, and computes scenario gaps, cumulative emissions, and a lightweight transition risk proxy via a carbon price stress test. All figures and tables are reproduced end-to-end from a single entry point (\texttt{python main.py}).
+\end{abstract}
+
+\section{Data}
+\textbf{Historical emissions:} Our World in Data (OWID) CO\textsubscript{2} dataset, restricted to the \textit{World} aggregate and the period 1990--2023. We use the OWID total CO\textsubscript{2} series (energy-related CO\textsubscript{2}).
+
+\textbf{Scenario emissions:} IEA World Energy Outlook 2025 Annex A (free dataset, World). We extract a single, defensible CO\textsubscript{2} series definition to avoid double counting:
+\begin{itemize}
+  \item CATEGORY = \texttt{CO2 total}
+  \item PRODUCT = \texttt{Total}
+  \item UNIT = \texttt{Mt CO2}
+  \item Sector dimension taken from FLOW (top-level flows only; e.g., Industry, Transport, Buildings, Power sector inputs).
+\end{itemize}
+
+\section{Methods}
+\subsection{Pipeline architecture}
+The codebase is modular: \texttt{src/io.py} loads raw data, \texttt{src/processing.py} harmonizes into a canonical schema, \texttt{src/scenarios.py} computes scenario metrics, \texttt{src/risk.py} implements the transition-risk proxy, and \texttt{src/visualization.py} generates publication-ready figures. A single entry point \texttt{main.py} executes the full workflow and saves outputs to \texttt{outputs/}.
+
+\subsection{Canonical schema and validation}
+All observations are stored in a long-format canonical table with fields: year, region, sector, scenario, variable, value, unit, and source. Assertions and uniqueness checks are used to prevent silent data corruption (e.g., accidental double counting of IEA CO\textsubscript{2} components).
+
+\subsection{Scenario annualization and bridging}
+IEA scenario emissions are provided at milestone years (e.g., 2035/2040/2050). To compute cumulative metrics and support stress testing, we annualize trajectories by linear interpolation between known points.
+
+For the global total series, we additionally assume that scenario pathways match observed history up to the last historical year (2023), then transition smoothly to IEA milestone values. This produces a complete annual series over 2020--2050 for STEPS and NZE, with assumptions made explicit in code and documented in the README.
+
+\subsection{Transition risk proxy: carbon price stress test}
+As a lightweight transition-risk signal, we compute annual ``carbon cost'' as:
+\[
+\text{Cost}_{y,s,k} = E_{y,s,k}\times P_{y,s}
+\]
+where \(E_{y,s,k}\) is emissions (tCO\textsubscript{2}) in year \(y\), scenario \(s\), sector \(k\), and \(P_{y,s}\) is a stylized carbon price path (USD/tCO\textsubscript{2}) that differs by scenario. Costs are reported in USD billions and accumulated over time.
+
+\section{Results}
+\subsection{Scenario trajectories and gaps}
+Figure~\ref{fig:traj} shows the (headline) emissions trajectory for the selected ``main sector'' (default: Total energy supply). The pipeline also produces sector-level trajectories and a small-multiples plot across IEA flows.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{outputs/figures/emissions_trajectories_by_scenario.png}
+  \caption{CO\textsubscript{2} emissions trajectories by scenario (headline sector).}
+  \label{fig:traj}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{outputs/figures/emissions_gap_vs_baseline.png}
+  \caption{Absolute emissions gap: STEPS minus NZE (headline sector).}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{outputs/figures/cumulative_emissions_by_scenario.png}
+  \caption{Cumulative emissions by scenario (annualized).}
+\end{figure}
+
+\subsection{Sector-level view}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.98\linewidth]{outputs/figures/sector_emissions_trajectories_grid.png}
+  \caption{Sector-level CO\textsubscript{2} trajectories using IEA FLOW breakdown (annualized from milestones).}
+\end{figure}
+
+\subsection{Transition risk: carbon cost}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{outputs/figures/carbon_cost_by_scenario.png}
+  \caption{Carbon price stress test (headline sector): annual carbon cost in USD bn.}
+\end{figure}
+
+\section{Discussion and limitations}
+This project is designed as an automated, reproducible workflow rather than a forecasting model. Scenario annualization introduces a clear modeling assumption (linear interpolation) that should be revisited if higher-frequency scenario data becomes available. The carbon price stress test is a transparent proxy for transition pressure, but it is not a full valuation model; extending this to entity-level (sector/company) exposures would require mapping emissions to revenues, assets, and pass-through assumptions.
+
+\section{Reproducibility}
+All results are generated by running:
+\begin{verbatim}
+python main.py
+\end{verbatim}
+Outputs are saved to \texttt{outputs/figures/} and \texttt{outputs/tables/}. The pipeline also writes \texttt{outputs/tables/run\_metadata.json} describing the run configuration.
+
+\end{document}

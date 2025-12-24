@@ -1,0 +1,223 @@
+year,scenario,sector,value
+2035,NZE,Buildings,1437.17
+2036,NZE,Buildings,1298.776
+2037,NZE,Buildings,1160.382
+2038,NZE,Buildings,1021.988
+2039,NZE,Buildings,883.594
+2040,NZE,Buildings,745.2
+2041,NZE,Buildings,675.643
+2042,NZE,Buildings,606.086
+2043,NZE,Buildings,536.529
+2044,NZE,Buildings,466.97200000000004
+2045,NZE,Buildings,397.415
+2046,NZE,Buildings,327.85800000000006
+2047,NZE,Buildings,258.30100000000004
+2048,NZE,Buildings,188.74400000000003
+2049,NZE,Buildings,119.18700000000003
+2050,NZE,Buildings,49.63
+2035,STEPS,Buildings,2492.18
+2036,STEPS,Buildings,2460.172
+2037,STEPS,Buildings,2428.1639999999998
+2038,STEPS,Buildings,2396.156
+2039,STEPS,Buildings,2364.1479999999997
+2040,STEPS,Buildings,2332.14
+2041,STEPS,Buildings,2315.672
+2042,STEPS,Buildings,2299.2039999999997
+2043,STEPS,Buildings,2282.736
+2044,STEPS,Buildings,2266.268
+2045,STEPS,Buildings,2249.8
+2046,STEPS,Buildings,2233.332
+2047,STEPS,Buildings,2216.864
+2048,STEPS,Buildings,2200.396
+2049,STEPS,Buildings,2183.928
+2050,STEPS,Buildings,2167.46
+2035,NZE,Industry,6300.81
+2036,NZE,Industry,5806.928
+2037,NZE,Industry,5313.046
+2038,NZE,Industry,4819.164000000001
+2039,NZE,Industry,4325.282
+2040,NZE,Industry,3831.4
+2041,NZE,Industry,3493.4990000000003
+2042,NZE,Industry,3155.598
+2043,NZE,Industry,2817.697
+2044,NZE,Industry,2479.7960000000003
+2045,NZE,Industry,2141.895
+2046,NZE,Industry,1803.9940000000001
+2047,NZE,Industry,1466.093
+2048,NZE,Industry,1128.192
+2049,NZE,Industry,790.2909999999999
+2050,NZE,Industry,452.39
+2035,STEPS,Industry,9250.42
+2036,STEPS,Industry,9248.696
+2037,STEPS,Industry,9246.972
+2038,STEPS,Industry,9245.248
+2039,STEPS,Industry,9243.524
+2040,STEPS,Industry,9241.8
+2041,STEPS,Industry,9206.098
+2042,STEPS,Industry,9170.395999999999
+2043,STEPS,Industry,9134.694
+2044,STEPS,Industry,9098.992
+2045,STEPS,Industry,9063.289999999999
+2046,STEPS,Industry,9027.588
+2047,STEPS,Industry,8991.886
+2048,STEPS,Industry,8956.184000000001
+2049,STEPS,Industry,8920.482
+2050,STEPS,Industry,8884.78
+2035,NZE,Other energy sector,404.43
+2036,NZE,Other energy sector,350.244
+2037,NZE,Other energy sector,296.058
+2038,NZE,Other energy sector,241.872
+2039,NZE,Other energy sector,187.686
+2040,NZE,Other energy sector,133.5
+2041,NZE,Other energy sector,109.487
+2042,NZE,Other energy sector,85.474
+2043,NZE,Other energy sector,61.461000000000006
+2044,NZE,Other energy sector,37.44800000000001
+2045,NZE,Other energy sector,13.43500000000001
+2046,NZE,Other energy sector,-10.577999999999989
+2047,NZE,Other energy sector,-34.59099999999999
+2048,NZE,Other energy sector,-58.603999999999985
+2049,NZE,Other energy sector,-82.61699999999999
+2050,NZE,Other energy sector,-106.63
+2035,STEPS,Other energy sector,1666.08
+2036,STEPS,Other energy sector,1659.3239999999998
+2037,STEPS,Other energy sector,1652.568
+2038,STEPS,Other energy sector,1645.812
+2039,STEPS,Other energy sector,1639.056
+2040,STEPS,Other energy sector,1632.3
+2041,STEPS,Other energy sector,1626.953
+2042,STEPS,Other energy sector,1621.606
+2043,STEPS,Other energy sector,1616.259
+2044,STEPS,Other energy sector,1610.912
+2045,STEPS,Other energy sector,1605.5649999999998
+2046,STEPS,Other energy sector,1600.2179999999998
+2047,STEPS,Other energy sector,1594.8709999999999
+2048,STEPS,Other energy sector,1589.524
+2049,STEPS,Other energy sector,1584.177
+2050,STEPS,Other energy sector,1578.83
+2035,NZE,Power sector inputs,4172.97
+2036,NZE,Power sector inputs,3419.632
+2037,NZE,Power sector inputs,2666.294
+2038,NZE,Power sector inputs,1912.9560000000001
+2039,NZE,Power sector inputs,1159.618
+2040,NZE,Power sector inputs,406.28
+2041,NZE,Power sector inputs,337.804
+2042,NZE,Power sector inputs,269.328
+2043,NZE,Power sector inputs,200.85199999999998
+2044,NZE,Power sector inputs,132.37599999999998
+2045,NZE,Power sector inputs,63.89999999999998
+2046,NZE,Power sector inputs,-4.576000000000022
+2047,NZE,Power sector inputs,-73.05200000000002
+2048,NZE,Power sector inputs,-141.52800000000002
+2049,NZE,Power sector inputs,-210.00400000000002
+2050,NZE,Power sector inputs,-278.48
+2035,STEPS,Power sector inputs,12783.02
+2036,STEPS,Power sector inputs,12376.524000000001
+2037,STEPS,Power sector inputs,11970.028
+2038,STEPS,Power sector inputs,11563.532000000001
+2039,STEPS,Power sector inputs,11157.036
+2040,STEPS,Power sector inputs,10750.54
+2041,STEPS,Power sector inputs,10520.351
+2042,STEPS,Power sector inputs,10290.162
+2043,STEPS,Power sector inputs,10059.973
+2044,STEPS,Power sector inputs,9829.784
+2045,STEPS,Power sector inputs,9599.595
+2046,STEPS,Power sector inputs,9369.406
+2047,STEPS,Power sector inputs,9139.217
+2048,STEPS,Power sector inputs,8909.028
+2049,STEPS,Power sector inputs,8678.839
+2050,STEPS,Power sector inputs,8448.65
+2020,NZE,Total energy supply,35158.23
+2021,NZE,Total energy supply,36866.863
+2022,NZE,Total energy supply,37527.773
+2023,NZE,Total energy supply,38094.039
+2024,NZE,Total energy supply,36386.700749999996
+2025,NZE,Total energy supply,34679.362499999996
+2026,NZE,Total energy supply,32972.024249999995
+2027,NZE,Total energy supply,31264.685999999998
+2028,NZE,Total energy supply,29557.347749999997
+2029,NZE,Total energy supply,27850.0095
+2030,NZE,Total energy supply,26142.67125
+2031,NZE,Total energy supply,24435.333
+2032,NZE,Total energy supply,22727.994749999998
+2033,NZE,Total energy supply,21020.656499999997
+2034,NZE,Total energy supply,19313.31825
+2035,NZE,Total energy supply,17605.98
+2036,NZE,Total energy supply,15712.144
+2037,NZE,Total energy supply,13818.307999999999
+2038,NZE,Total energy supply,11924.472
+2039,NZE,Total energy supply,10030.635999999999
+2040,NZE,Total energy supply,8136.8
+2041,NZE,Total energy supply,7323.12
+2042,NZE,Total energy supply,6509.4400000000005
+2043,NZE,Total energy supply,5695.76
+2044,NZE,Total energy supply,4882.08
+2045,NZE,Total energy supply,4068.3999999999996
+2046,NZE,Total energy supply,3254.72
+2047,NZE,Total energy supply,2441.04
+2048,NZE,Total energy supply,1627.3599999999997
+2049,NZE,Total energy supply,813.6799999999996
+2050,NZE,Total energy supply,0.0
+2020,STEPS,Total energy supply,35158.23
+2021,STEPS,Total energy supply,36866.863
+2022,STEPS,Total energy supply,37527.773
+2023,STEPS,Total energy supply,38094.039
+2024,STEPS,Total energy supply,37856.50575
+2025,STEPS,Total energy supply,37618.972499999996
+2026,STEPS,Total energy supply,37381.439249999996
+2027,STEPS,Total energy supply,37143.905999999995
+2028,STEPS,Total energy supply,36906.372749999995
+2029,STEPS,Total energy supply,36668.839499999995
+2030,STEPS,Total energy supply,36431.30625
+2031,STEPS,Total energy supply,36193.773
+2032,STEPS,Total energy supply,35956.23975
+2033,STEPS,Total energy supply,35718.7065
+2034,STEPS,Total energy supply,35481.17325
+2035,STEPS,Total energy supply,35243.64
+2036,STEPS,Total energy supply,34747.62
+2037,STEPS,Total energy supply,34251.6
+2038,STEPS,Total energy supply,33755.58
+2039,STEPS,Total energy supply,33259.56
+2040,STEPS,Total energy supply,32763.54
+2041,STEPS,Total energy supply,32450.095
+2042,STEPS,Total energy supply,32136.65
+2043,STEPS,Total energy supply,31823.205
+2044,STEPS,Total energy supply,31509.760000000002
+2045,STEPS,Total energy supply,31196.315000000002
+2046,STEPS,Total energy supply,30882.87
+2047,STEPS,Total energy supply,30569.425
+2048,STEPS,Total energy supply,30255.98
+2049,STEPS,Total energy supply,29942.535
+2050,STEPS,Total energy supply,29629.09
+2035,NZE,Transport,5245.28
+2036,NZE,Transport,4847.12
+2037,NZE,Transport,4448.96
+2038,NZE,Transport,4050.7999999999997
+2039,NZE,Transport,3652.64
+2040,NZE,Transport,3254.48
+2041,NZE,Transport,3018.305
+2042,NZE,Transport,2782.13
+2043,NZE,Transport,2545.955
+2044,NZE,Transport,2309.7799999999997
+2045,NZE,Transport,2073.605
+2046,NZE,Transport,1837.4299999999998
+2047,NZE,Transport,1601.2549999999999
+2048,NZE,Transport,1365.08
+2049,NZE,Transport,1128.905
+2050,NZE,Transport,892.73
+2035,STEPS,Transport,8450.85
+2036,STEPS,Transport,8400.94
+2037,STEPS,Transport,8351.03
+2038,STEPS,Transport,8301.119999999999
+2039,STEPS,Transport,8251.21
+2040,STEPS,Transport,8201.3
+2041,STEPS,Transport,8180.021999999999
+2042,STEPS,Transport,8158.744
+2043,STEPS,Transport,8137.465999999999
+2044,STEPS,Transport,8116.188
+2045,STEPS,Transport,8094.91
+2046,STEPS,Transport,8073.632
+2047,STEPS,Transport,8052.354
+2048,STEPS,Transport,8031.076
+2049,STEPS,Transport,8009.798000000001
+2050,STEPS,Transport,7988.52
