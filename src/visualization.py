@@ -77,3 +77,4 @@ def plot_emissions_gap(df):
     plt.tight_layout()
     plt.savefig(output_path)
     plt.close()
+    
