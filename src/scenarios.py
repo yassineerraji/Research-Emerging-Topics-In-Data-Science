@@ -1,113 +1,112 @@
 """
 scenarios.py
 
-Scenario analysis logic for the climate emissions pipeline.
+Scenario-based analysis logic for the climate scenario analysis pipeline.
 
-This module extracts scenario-specific emissions trajectories from the
-canonical dataset and computes comparative metrics between baseline and
-net-zero pathways.
-
-No data loading or visualization occurs here.
+This module computes:
+- annual emissions trajectories by scenario
+- absolute emissions gaps vs baseline
+- cumulative emissions metrics
+- indexed (normalized) emissions trajectories
 """
 
 import pandas as pd
 
-from src.config import (
-    BASELINE_SCENARIO,
-    NET_ZERO_SCENARIO,
-    CO2_VARIABLE_NAME,
-)
+from src.config import BASELINE_SCENARIO, NET_ZERO_SCENARIO
 
 
-def extract_scenario_trajectories(df: pd.DataFrame) -> pd.DataFrame:
+def compute_trajectories(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Extract emissions trajectories for each scenario.
-
-    Parameters
-    ----------
-    df : pd.DataFrame
-        Canonical dataset containing historical and scenario data.
-
-    Returns
-    -------
-    pd.DataFrame
-        DataFrame with emissions trajectories by year and scenario.
+    Compute annual emissions trajectories by scenario.
     """
-    # Keep only CO2 emissions variable
-    df = df[df["variable"] == CO2_VARIABLE_NAME].copy()
-
-    # Aggregate in case multiple rows exist per year/scenario
     trajectories = (
-        df.groupby(["year", "scenario"], as_index=False)["value"]
+        df[df["scenario"].isin(["historical", BASELINE_SCENARIO, NET_ZERO_SCENARIO])]
+        .groupby(["year", "scenario"], as_index=False)["value"]
         .sum()
+        .sort_values(["scenario", "year"])
     )
 
     return trajectories
 
 
-def compute_gap_vs_baseline(df: pd.DataFrame) -> pd.DataFrame:
+def compute_gap_vs_baseline(trajectories: pd.DataFrame) -> pd.DataFrame:
     """
-    Compute absolute and relative emissions gaps between the baseline
-    scenario and the net-zero scenario.
-
-    Parameters
-    ----------
-    df : pd.DataFrame
-        Output of extract_scenario_trajectories().
-
-    Returns
-    -------
-    pd.DataFrame
-        DataFrame containing absolute and percentage gaps by year.
+    Compute absolute emissions gap between baseline and net zero scenarios.
     """
-    # Pivot to wide format for easier comparison
-    pivot_df = df.pivot(
+    pivot_df = trajectories.pivot(
         index="year",
         columns="scenario",
         values="value",
-    ).reset_index()
+    )
 
-    # Ensure required scenarios are present
     required = {BASELINE_SCENARIO, NET_ZERO_SCENARIO}
     if not required.issubset(pivot_df.columns):
         raise ValueError(
-            f"Both {BASELINE_SCENARIO} and {NET_ZERO_SCENARIO} "
-            "must be present in the dataset."
+            f"Both {BASELINE_SCENARIO} and {NET_ZERO_SCENARIO} must be present in the dataset."
         )
 
-    # Compute absolute gap (baseline - net zero)
-    pivot_df["absolute_gap"] = (
+    gap = (
         pivot_df[BASELINE_SCENARIO] - pivot_df[NET_ZERO_SCENARIO]
+    ).reset_index(name="gap")
+
+    return gap
+
+
+def compute_cumulative_emissions(
+    trajectories: pd.DataFrame,
+    start_year: int = 2020,
+) -> pd.DataFrame:
+    """
+    Compute cumulative emissions by scenario from a given start year.
+    """
+    df = trajectories[trajectories["year"] >= start_year].copy()
+
+    df["cumulative_emissions"] = (
+        df.sort_values("year")
+        .groupby("scenario")["value"]
+        .cumsum()
     )
 
-    # Compute relative gap (% reduction vs baseline)
-    pivot_df["relative_gap_pct"] = (
-        pivot_df["absolute_gap"] / pivot_df[BASELINE_SCENARIO]
-    ) * 100
+    return df
 
-    return pivot_df
+
+def compute_indexed_trajectories(
+    trajectories: pd.DataFrame,
+) -> pd.DataFrame:
+    """
+    Compute indexed (normalized) emissions trajectories.
+
+    Each scenario is normalized to 100 in its first available year.
+    This highlights relative rates of change rather than absolute levels.
+    """
+    indexed = trajectories.copy()
+
+    def normalize(group: pd.DataFrame) -> pd.DataFrame:
+        base_value = group.iloc[0]["value"]
+        group["emissions_index"] = (group["value"] / base_value) * 100
+        return group
+
+    indexed = (
+        indexed.sort_values("year")
+        .groupby("scenario", group_keys=False)
+        .apply(normalize)
+    )
+
+    return indexed
 
 
 def run_scenario_analysis(df: pd.DataFrame) -> dict:
     """
-    Run the full scenario analysis workflow.
-
-    Parameters
-    ----------
-    df : pd.DataFrame
-        Canonical dataset.
-
-    Returns
-    -------
-    dict
-        Dictionary containing analysis outputs:
-        - trajectories
-        - gaps
+    Run the full scenario analysis.
     """
-    trajectories = extract_scenario_trajectories(df)
+    trajectories = compute_trajectories(df)
     gaps = compute_gap_vs_baseline(trajectories)
+    cumulative = compute_cumulative_emissions(trajectories)
+    indexed = compute_indexed_trajectories(trajectories)
 
     return {
         "trajectories": trajectories,
         "gaps": gaps,
+        "cumulative": cumulative,
+        "indexed": indexed,
     }

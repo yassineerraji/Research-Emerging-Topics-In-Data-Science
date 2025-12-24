@@ -2,79 +2,92 @@
 visualization.py
 
 Visualization utilities for the climate scenario analysis pipeline.
-
-This module is responsible for generating static, publication-grade figures
-from pre-computed analysis results. It does not perform any data loading
-or analytical computations.
 """
 
 import matplotlib.pyplot as plt
+import pandas as pd
+from pathlib import Path
 
-from src.config import FIGURES_DIR, EMISSIONS_UNIT
+
+FIGURES_DIR = Path("outputs/figures")
+FIGURES_DIR.mkdir(parents=True, exist_ok=True)
 
 
-def plot_emissions_trajectories(df):
-    """
-    Plot global CO2 emissions trajectories by scenario.
-
-    Parameters
-    ----------
-    df : pd.DataFrame
-        DataFrame containing emissions trajectories with columns:
-        - year
-        - scenario
-        - value
-    """
+def plot_emissions_trajectories(df: pd.DataFrame) -> None:
+    """Plot annual CO2 emissions trajectories by scenario."""
     plt.figure(figsize=(10, 6))
 
-    # Plot each scenario separately for clarity
-    for scenario in df["scenario"].unique():
-        subset = df[df["scenario"] == scenario]
+    for scenario, sub_df in df.groupby("scenario"):
+        plt.plot(sub_df["year"], sub_df["value"], label=scenario)
+
+    plt.title("Global CO2 Emissions Trajectories by Scenario")
+    plt.xlabel("Year")
+    plt.ylabel("CO2 emissions (MtCO2)")
+    plt.legend()
+    plt.grid(True)
+    plt.tight_layout()
+
+    plt.savefig(FIGURES_DIR / "emissions_trajectories_by_scenario.png")
+    plt.close()
+
+
+def plot_emissions_gap(df: pd.DataFrame) -> None:
+    """Plot absolute emissions gap vs baseline scenario."""
+    plt.figure(figsize=(10, 6))
+
+    plt.plot(df["year"], df["gap"], label="Baseline vs Net Zero gap")
+
+    plt.title("Absolute CO2 Emissions Gap vs Baseline Scenario")
+    plt.xlabel("Year")
+    plt.ylabel("Emissions gap (MtCO2)")
+    plt.legend()
+    plt.grid(True)
+    plt.tight_layout()
+
+    plt.savefig(FIGURES_DIR / "emissions_gap_vs_baseline.png")
+    plt.close()
+
+
+def plot_cumulative_emissions(df: pd.DataFrame) -> None:
+    """Plot cumulative CO2 emissions by scenario."""
+    plt.figure(figsize=(10, 6))
+
+    for scenario, sub_df in df.groupby("scenario"):
         plt.plot(
-            subset["year"],
-            subset["value"],
+            sub_df["year"],
+            sub_df["cumulative_emissions"],
             label=scenario,
         )
 
+    plt.title("Cumulative Global CO2 Emissions by Scenario (from 2020)")
     plt.xlabel("Year")
-    plt.ylabel(f"CO2 emissions ({EMISSIONS_UNIT})")
-    plt.title("Global CO2 Emissions Trajectories by Scenario")
+    plt.ylabel("Cumulative CO2 emissions (MtCO2)")
     plt.legend()
-    plt.grid(True, alpha=0.3)
-
-    output_path = FIGURES_DIR / "emissions_trajectories.png"
+    plt.grid(True)
     plt.tight_layout()
-    plt.savefig(output_path)
+
+    plt.savefig(FIGURES_DIR / "cumulative_emissions_by_scenario.png")
     plt.close()
 
 
-def plot_emissions_gap(df):
-    """
-    Plot the absolute emissions gap between baseline and net-zero scenarios.
-
-    Parameters
-    ----------
-    df : pd.DataFrame
-        DataFrame containing gap metrics with columns:
-        - year
-        - absolute_gap
-    """
+def plot_indexed_trajectories(df: pd.DataFrame) -> None:
+    """Plot indexed (normalized) emissions trajectories."""
     plt.figure(figsize=(10, 6))
 
-    plt.plot(
-        df["year"],
-        df["absolute_gap"],
-        label="Baseline vs Net Zero gap",
-    )
+    for scenario, sub_df in df.groupby("scenario"):
+        plt.plot(
+            sub_df["year"],
+            sub_df["emissions_index"],
+            label=scenario,
+        )
 
+    plt.axhline(100, linestyle="--", linewidth=1)
+    plt.title("Indexed Global CO2 Emissions Trajectories (Index = 100 at Start)")
     plt.xlabel("Year")
-    plt.ylabel(f"Emissions gap ({EMISSIONS_UNIT})")
-    plt.title("Absolute CO2 Emissions Gap vs Baseline Scenario")
+    plt.ylabel("Emissions index")
     plt.legend()
-    plt.grid(True, alpha=0.3)
-
-    output_path = FIGURES_DIR / "emissions_gap_vs_baseline.png"
+    plt.grid(True)
     plt.tight_layout()
-    plt.savefig(output_path)
+
+    plt.savefig(FIGURES_DIR / "indexed_emissions_trajectories.png")
     plt.close()
-    
